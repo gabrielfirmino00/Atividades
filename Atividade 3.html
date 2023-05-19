@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faça sua Lista Colorida</title>
+  <style>
+    .vermelho {
+      color: red;
+    }
+    .azul {
+      color: blue;
+    }
+    .verde {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h2>Faça sua Lista Colorida</h2>
+
+  <input type="text" id="itemInput" placeholder="Digite o item da lista" />
+  <br /><br />
+  <input type="radio" name="cores" value="vermelho" checked /> Vermelho
+  <input type="radio" name="cores" value="azul" /> Azul
+  <input type="radio" name="cores" value="verde" /> Verde
+  <br /><br />
+  <button id="addItemBtn">Adicionar Item</button>
+
+  <h3>Lista:</h3>
+  <ul id="myList"></ul>
+
+  <script>
+    document.getElementById("addItemBtn").addEventListener("click", addItemToList);
+
+    function addItemToList() {
+      var itemInput = document.getElementById("itemInput");
+      var cor = document.querySelector('input[name="cores"]:checked').value;
+
+      if (itemInput.value === "") {
+        alert("Por favor, digite um item para adicionar à lista.");
+        return;
+      }
+
+      var listItem = document.createElement("li");
+      listItem.innerText = itemInput.value;
+      listItem.classList.add(cor);
+
+      document.getElementById("myList").appendChild(listItem);
+
+      itemInput.value = "";
+    }
+  </script>
+</body>
+</html>

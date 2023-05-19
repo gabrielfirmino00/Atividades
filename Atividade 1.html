@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Notas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      width: 300px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    .aprovado {
+      color: blue;
+    }
+    
+    .reprovado {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Notas c/ Meidas "6"</h1>
+    <label for="nota1">Nota 1:</label>
+    <input type="number" id="nota1" />
+    <label for="nota2">Nota 2:</label>
+    <input type="number" id="nota2" />
+    <button onclick="calcularMedia()">Calcular</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calcularMedia() {
+        
+      var nota1 = parseFloat(prompt("Digite a Nota 1:"));
+      var nota2 = parseFloat(prompt("Digite a Nota 2:"));
+      var resultDiv = document.getElementById("result");
+
+      if (isNaN(nota1) || isNaN(nota2) || nota1 < 0 || nota2 < 0) {
+        resultDiv.innerText = "Por favor, insira notas válidas.";
+        resultDiv.className = "";
+        return;
+      }
+
+      var media = (nota1 + nota2) / 2;
+      var situacao = "";
+      var cor = "";
+
+      if (media >= 6) {
+        situacao = "Aprovado";
+        cor = "aprovado";
+      } else {
+        situacao = "Reprovado";
+        cor = "reprovado";
+      }
+
+      resultDiv.innerText = "Média: " + media.toFixed(2);
+      resultDiv.className = cor;
+      resultDiv.innerText += "\nSituação: " + situacao;
+    }
+  </script>
+</body>
+</html>
